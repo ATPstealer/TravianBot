@@ -94,11 +94,11 @@ class Village:
         if button:
             url = self.get_url(button['onclick'])
             self.get.request(url + "&newdid=" + self.village_id)
-            if construction.land_type:
-                print("Start build " + construction.land_type + " level " + str(construction.level) + " on slot " +
+            if isinstance(construction, Resource):
+                print("Start build " + construction.land_type + " level " + str(construction.level+1) + " on slot " +
                       str(construction.slot))
             else:
-                print("Start build " + construction.building_type + " level " + str(construction.level) + " on slot " +
+                print("Start build " + construction.building_type + " level " + str(construction.level+1) + " on slot " +
                       str(construction.slot))
             return True
         else:
