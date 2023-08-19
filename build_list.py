@@ -21,8 +21,8 @@ build_list = [
     {"type": "building", "building_type": "Stable", "level": 3, "aid": 34},
     {"type": "building", "building_type": "Warehouse", "level": 13},
     {"type": "building", "building_type": "Granary ", "level": 10},
+    {"type": "resource", "land_type": "Cropland", "level": 5},
     {"type": "resource", "land_type": "Woodcutter", "level": 7},
     {"type": "resource", "land_type": "Iron Mine", "level": 7},
     {"type": "resource", "land_type": "Clay Pit", "level": 7},
-    {"type": "resource", "land_type": "Cropland", "level": 5},
 ]

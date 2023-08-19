@@ -3,19 +3,21 @@ from build_list import build_list
 
 
 class Resource:
-    def __init__(self, land_type, level, slot, gid):
+    def __init__(self, land_type, level, slot, gid, under_construction):
         self.land_type = land_type
         self.level = level
         self.slot = slot
         self.gid = gid
+        self.under_construction = under_construction
 
 
 class Building:
-    def __init__(self, building_type, level, slot, gid):
+    def __init__(self, building_type, level, slot, gid, under_construction):
         self.building_type = building_type
         self.level = level
         self.slot = slot
         self.gid = gid
+        self.under_construction = under_construction
 
 
 class Village:
@@ -26,9 +28,9 @@ class Village:
         self.resources = []
         self.buildings = []
         self.get_resources()
-        # self.show_resources()
+        #self.show_resources()
         self.get_buildings()
-        # self.show_buildings()
+        #self.show_buildings()
         self.check_list()
 
     def get_resources(self):
@@ -50,28 +52,30 @@ class Village:
             slot = int(''.join(filter(str.isdigit, slot_str)))
             gid_str = next(c for c in classes if c.startswith('gid'))
             gid = int(''.join(filter(str.isdigit, gid_str)))
-            self.resources.append(Resource(land_type, level, slot, gid))
+            under_construction = True if "underConstruction" in classes else False
+            self.resources.append(Resource(land_type, level, slot, gid, under_construction))
 
     def get_buildings(self):
         soup = BeautifulSoup(self.get.request("/dorf2.php?newdid=" + self.village_id).text, "html.parser")
         buildings_divs = soup.find(id="villageContent")
         for div in buildings_divs.find_all(class_="buildingSlot"):
             level = div.find("a")['data-level'] if div['data-gid'] != "0" else 0
-            self.buildings.append(Building(div['data-name'], int(level), int(div['data-aid']), int(div['data-gid'])))
+            self.buildings.append(Building(div['data-name'], int(level), int(div['data-aid']), int(div['data-gid']), False))
 
     def show_resources(self):
         for res in self.resources:
-            print(res.land_type, res.level, res.slot, res.gid)
+            print(res.land_type, res.level, res.slot, res.gid, res.under_construction)
 
     def show_buildings(self):
         for building in self.buildings:
-            print(building.building_type, building.level, building.slot, building.gid)
+            print(building.building_type, building.level, building.slot, building.gid, building.under_construction)
 
     def check_list(self):
         for build_task in build_list:
             if build_task["type"] == "resource":
                 for res in self.resources:
-                    if res.land_type == build_task["land_type"] and res.level < build_task["level"]:
+                    under_construction = 1 if res.under_construction else 0
+                    if res.land_type == build_task["land_type"] and res.level + under_construction < build_task["level"]:
                         print(build_task)
                         if not self.upgrade(res):
                             return
@@ -80,9 +84,10 @@ class Village:
                 for building in self.buildings:
                     if building.building_type == build_task["building_type"]:
                         building_exist = 1
-                    if building.building_type == build_task["building_type"] and building.level < build_task["level"]:
-                        if not self.upgrade(building):
-                            return
+                        under_construction = 1 if building.under_construction else 0
+                        if building.level + under_construction < build_task["level"]:
+                            if not self.upgrade(building):
+                                return
                 if not building_exist:
                     self.construct_new_building(build_task)
 
