@@ -3,6 +3,6 @@ build_list = [
     {"type": "resource", "land_type": "Iron Mine", "level": 1},
     {"type": "resource", "land_type": "Clay Pit", "level": 1},
     {"type": "resource", "land_type": "Cropland", "level": 1},
-    {"type": "building", "building_type": "Barracks", "level": 10}
-
+    {"type": "building", "building_type": "Barracks", "level": 1},
+    {"type": "building", "building_type": "Cranny", "level": 1, "aid": 35}
 ]
