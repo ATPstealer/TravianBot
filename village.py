@@ -76,8 +76,13 @@ class Village:
                         self.upgrade(res)
 
     def upgrade(self, res):
-        print(res.slot)
-
-
-
-
+        soup = BeautifulSoup(self.get.request("/build.php?newdid=" + self.village_id + "&id=" + str(res.slot)).text, "html.parser")
+        button = soup.find("button", class_="textButtonV1 green build")
+        print(button)
+        if button:
+            print("asdf")
+            start = button['onclick'].find("'") + 1
+            end = button['onclick'].find("'", start)
+            url = button['onclick'][start:end]
+            res = self.get.request(url + "&newdid=" + self.village_id)
+            print(res)
