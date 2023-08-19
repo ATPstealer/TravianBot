@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-
 from build_list import build_list
 
 
@@ -73,16 +72,19 @@ class Village:
             if build_task["type"] == "resource":
                 for res in self.resources:
                     if res.land_type == build_task["land_type"] and res.level < build_task["level"]:
-                        self.upgrade(res)
+                        if not self.upgrade(res):
+                            return
 
     def upgrade(self, res):
         soup = BeautifulSoup(self.get.request("/build.php?newdid=" + self.village_id + "&id=" + str(res.slot)).text, "html.parser")
         button = soup.find("button", class_="textButtonV1 green build")
-        print(button)
         if button:
-            print("asdf")
             start = button['onclick'].find("'") + 1
             end = button['onclick'].find("'", start)
             url = button['onclick'][start:end]
-            res = self.get.request(url + "&newdid=" + self.village_id)
-            print(res)
+            self.get.request(url + "&newdid=" + self.village_id)
+            print("Start build " + res.land_type + " level " + str(res.level) + " on slot " + str(res.slot))
+            return True
+        else:
+            print("Workers busy")
+            return False
