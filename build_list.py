@@ -16,6 +16,7 @@ build_list = [
     {"type": "resource", "land_type": "Woodcutter", "level": 3},
     {"type": "resource", "land_type": "Iron Mine", "level": 3},
     {"type": "resource", "land_type": "Clay Pit", "level": 3},
+    {"type": "resource", "land_type": "Cropland", "level": 3},
     {"type": "building", "building_type": "Main Building", "level": 15},
     {"type": "building", "building_type": "Barracks", "level": 5},
     {"type": "building", "building_type": "Academy", "level": 5, "aid": 36},
