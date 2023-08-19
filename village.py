@@ -72,18 +72,30 @@ class Village:
             if build_task["type"] == "resource":
                 for res in self.resources:
                     if res.land_type == build_task["land_type"] and res.level < build_task["level"]:
+                        print(build_task)
                         if not self.upgrade(res):
                             return
+            if build_task["type"] == "building":
+                for building in self.buildings:
+                    if building.building_type == build_task["building_type"] and building.level < build_task["level"]:
+                        print(build_task)
+                        if not self.upgrade(building):
+                            return
 
-    def upgrade(self, res):
-        soup = BeautifulSoup(self.get.request("/build.php?newdid=" + self.village_id + "&id=" + str(res.slot)).text, "html.parser")
+    def upgrade(self, construction):
+        soup = BeautifulSoup(self.get.request("/build.php?newdid=" + self.village_id + "&id=" + str(construction.slot)).text, "html.parser")
         button = soup.find("button", class_="textButtonV1 green build")
         if button:
             start = button['onclick'].find("'") + 1
             end = button['onclick'].find("'", start)
             url = button['onclick'][start:end]
             self.get.request(url + "&newdid=" + self.village_id)
-            print("Start build " + res.land_type + " level " + str(res.level) + " on slot " + str(res.slot))
+            if construction.land_type:
+                print("Start build " + construction.land_type + " level " + str(construction.level) + " on slot " +
+                      str(construction.slot))
+            else:
+                print("Start build " + construction.building_type + " level " + str(construction.level) + " on slot " +
+                      str(construction.slot))
             return True
         else:
             print("Workers busy")
