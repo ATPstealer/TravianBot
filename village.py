@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 
+from build_list import build_list
+
 
 class Resource:
     def __init__(self, land_type, level, slot, gid):
@@ -25,9 +27,10 @@ class Village:
         self.resources = []
         self.buildings = []
         self.get_resources()
-        self.show_resources()
+        # self.show_resources()
         self.get_buildings()
-        self.show_buildings()
+        # self.show_buildings()
+        self.check_list()
 
     def get_resources(self):
         soup = BeautifulSoup(self.get.request("/dorf1.php?newdid=" + self.village_id).text, "html.parser")
@@ -64,3 +67,17 @@ class Village:
     def show_buildings(self):
         for building in self.buildings:
             print(building.building_type, building.level, building.slot, building.gid)
+
+    def check_list(self):
+        for build_task in build_list:
+            if build_task["type"] == "resource":
+                for res in self.resources:
+                    if res.land_type == build_task["land_type"] and res.level < build_task["level"]:
+                        self.upgrade(res)
+
+    def upgrade(self, res):
+        print(res.slot)
+
+
+
+
