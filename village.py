@@ -115,23 +115,23 @@ class Village:
             building_slot = task["aid"]
         else:
             building_slot = self.find_free_slot().slot
+        for category in range(1, 4):
+            soup = BeautifulSoup(
+                self.get.request("/build.php?category=" + str(category) + "&newdid=" + self.village_id + "&id=" + str(building_slot)).text,
+                "html.parser")
 
-        soup = BeautifulSoup(
-            self.get.request("/build.php?category=1&newdid=" + self.village_id + "&id=" + str(building_slot)).text,
-            "html.parser")
-
-        big_div = soup.find("div", class_="gid0", id="build")
-        if not big_div:
-            print("Can't build here")
-            return
-        building_wrapper = big_div.find_all(class_="buildingWrapper")
-        for building in building_wrapper:
-            name = building.find("h2")
-            if name.text == task["building_type"]:
-                button = building.find(class_="textButtonV1 green new")
-                url = self.get_url(button['onclick'])
-                result = self.get.request(url + "&newdid=" + self.village_id)
-                print("Start build new " + task['building_type'] + " in " + str(building_slot))
+            big_div = soup.find("div", class_="gid0", id="build")
+            if not big_div:
+                print("Can't build here")
+                return
+            building_wrapper = big_div.find_all(class_="buildingWrapper")
+            for building in building_wrapper:
+                name = building.find("h2")
+                if name.text == task["building_type"]:
+                    button = building.find(class_="textButtonV1 green new")
+                    url = self.get_url(button['onclick'])
+                    self.get.request(url + "&newdid=" + self.village_id)
+                    print("Start build new " + task['building_type'] + " in " + str(building_slot))
 
     def find_free_slot(self):
         for building in self.buildings:
