@@ -121,6 +121,9 @@ class Village:
             "html.parser")
 
         big_div = soup.find("div", class_="gid0", id="build")
+        if not big_div:
+            print("Can't build here")
+            return
         building_wrapper = big_div.find_all(class_="buildingWrapper")
         for building in building_wrapper:
             name = building.find("h2")
