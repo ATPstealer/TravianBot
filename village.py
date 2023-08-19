@@ -80,6 +80,7 @@ class Village:
                         if not self.upgrade(res):
                             return
             if build_task["type"] == "building":
+                print(build_task)
                 building_exist = 0
                 for building in self.buildings:
                     if building.building_type == build_task["building_type"]:
@@ -111,6 +112,7 @@ class Village:
             return False
 
     def construct_new_building(self, task):
+        print(task)
         if "aid" in task:
             building_slot = task["aid"]
         else:
