@@ -13,9 +13,8 @@ class Resource:
         self.under_construction = under_construction
 
     def __str__(self):
-        return 'land_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(self.land_type, self.level,
-                                                                                            self.slot, self.gid,
-                                                                                            self.under_construction)
+        return 'land_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.\
+            format(self.land_type, self.level,self.slot, self.gid,self.under_construction)
 
 
 class Building:
@@ -27,10 +26,8 @@ class Building:
         self.under_construction = under_construction
 
     def __str__(self):
-        return 'building_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(self.building_type,
-                                                                                                self.level, self.slot,
-                                                                                                self.gid,
-                                                                                                self.under_construction)
+        return 'building_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.\
+            format(self.building_type,self.level, self.slot,self.gid, self.under_construction)
 
 
 class Village:
