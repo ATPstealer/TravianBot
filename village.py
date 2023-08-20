@@ -13,12 +13,9 @@ class Resource:
         self.under_construction = under_construction
 
     def __str__(self):
-        return 'land_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(
-            self.land_type,
-            self.level,
-            self.slot,
-            self.gid,
-            self.under_construction)
+        return 'land_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(self.land_type, self.level,
+                                                                                            self.slot, self.gid,
+                                                                                            self.under_construction)
 
 
 class Building:
@@ -30,12 +27,11 @@ class Building:
         self.under_construction = under_construction
 
     def __str__(self):
-        return 'building_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(
-            self.building_type,
-            self.level,
-            self.slot,
-            self.gid,
-            self.under_construction)
+        return 'building_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(self.building_type,
+                                                                                                self.level, self.slot,
+                                                                                                self.gid,
+                                                                                                self.under_construction)
+
 
 class Village:
     def __init__(self, village_id, get):
@@ -72,7 +68,8 @@ class Village:
         buildings_divs = soup.find(id="villageContent")
         for div in buildings_divs.find_all(class_="buildingSlot"):
             level = div.find("a")['data-level'] if div['data-gid'] != "0" else 0
-            self.buildings.append(Building(div['data-name'], int(level), int(div['data-aid']), int(div['data-gid']), False))
+            self.buildings.append(
+                Building(div['data-name'], int(level), int(div['data-aid']), int(div['data-gid']), False))
 
     def show_resources(self):
         for res in self.resources:
@@ -87,15 +84,15 @@ class Village:
         task_list = capital_build_list if self.village_id == capital else build_list
         print(task_list)
         for build_task in task_list:
+            print(build_task)
             if build_task["type"] == "resource":
                 for res in self.resources:
                     under_construction = 1 if res.under_construction else 0
                     if res.land_type == build_task["land_type"] and res.level + under_construction < build_task["level"]:
-                        if building.level + under_construction < build_task["level"]:
-                            if not self.upgrade(res):
-                                cant_build_counter += 1
-                            if cant_build_counter > 3:
-                                return
+                        if not self.upgrade(res):
+                            cant_build_counter += 1
+                        if cant_build_counter > 3:
+                            return
             if build_task["type"] == "building":
                 building_exist = 0
                 for building in self.buildings:
@@ -103,7 +100,6 @@ class Village:
                         building_exist = 1
                         under_construction = 1 if building.under_construction else 0
                         if building.level + under_construction < build_task["level"]:
-
                             if not self.upgrade(building):
                                 cant_build_counter += 1
                             if cant_build_counter > 3:
@@ -121,11 +117,11 @@ class Village:
             url = self.get_url(button['onclick'])
             self.get.request(url + "&newdid=" + self.village_id)
             if isinstance(construction, Resource):
-                print("Start build " + construction.land_type + " level " + str(construction.level+1) + " on slot " +
-                      str(construction.slot))
+                print("Start build " + construction.land_type + " level " + str(
+                    construction.level + 1) + " on slot " + str(construction.slot))
             else:
-                print("Start build " + construction.building_type + " level " + str(construction.level+1) + " on slot " +
-                      str(construction.slot))
+                print("Start build " + construction.building_type + " level " + str(
+                    construction.level + 1) + " on slot " + str(construction.slot))
             return True
         else:
             print("Workers busy or not enough resources")
@@ -138,9 +134,9 @@ class Village:
         else:
             building_slot = self.find_free_slot().slot
         for category in range(1, 4):
-            soup = BeautifulSoup(
-                self.get.request("/build.php?category=" + str(category) + "&newdid=" + self.village_id + "&id=" + str(building_slot)).text,
-                "html.parser")
+            soup = BeautifulSoup(self.get.request(
+                "/build.php?category=" + str(category) + "&newdid=" + self.village_id + "&id=" + str(
+                    building_slot)).text, "html.parser")
 
             big_div = soup.find("div", class_="gid0", id="build")
             if not big_div:
