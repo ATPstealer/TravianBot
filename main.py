@@ -16,7 +16,6 @@ for village_id in village_ids:
     village = Village(village_id, get)
     village.get_resources()
     village.get_buildings()
-    village.show_resources()
     village.show_buildings()
     village.check_list()
 
