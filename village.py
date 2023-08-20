@@ -1,5 +1,7 @@
+import json
+
 from bs4 import BeautifulSoup
-from build_list import build_list
+from build_list import build_list, capital, capital_build_list
 
 
 class Resource:
@@ -10,6 +12,14 @@ class Resource:
         self.gid = gid
         self.under_construction = under_construction
 
+    def __str__(self):
+        return 'land_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(
+            self.land_type,
+            self.level,
+            self.slot,
+            self.gid,
+            self.under_construction)
+
 
 class Building:
     def __init__(self, building_type, level, slot, gid, under_construction):
@@ -19,6 +29,13 @@ class Building:
         self.gid = gid
         self.under_construction = under_construction
 
+    def __str__(self):
+        return 'building_type: {}, level: {}, slot: {}, gid: {}, under_construction: {}'.format(
+            self.building_type,
+            self.level,
+            self.slot,
+            self.gid,
+            self.under_construction)
 
 class Village:
     def __init__(self, village_id, get):
@@ -27,11 +44,6 @@ class Village:
         self.get = get
         self.resources = []
         self.buildings = []
-        self.get_resources()
-        #self.show_resources()
-        self.get_buildings()
-        #self.show_buildings()
-        self.check_list()
 
     def get_resources(self):
         soup = BeautifulSoup(self.get.request("/dorf1.php?newdid=" + self.village_id).text, "html.parser")
@@ -71,28 +83,36 @@ class Village:
             print(building.building_type, building.level, building.slot, building.gid, building.under_construction)
 
     def check_list(self):
-        for build_task in build_list:
+        cant_build_counter = 0
+        task_list = capital_build_list if self.village_id == capital else build_list
+        print(task_list)
+        for build_task in task_list:
             if build_task["type"] == "resource":
                 for res in self.resources:
                     under_construction = 1 if res.under_construction else 0
                     if res.land_type == build_task["land_type"] and res.level + under_construction < build_task["level"]:
-                        print(build_task)
-                        if not self.upgrade(res):
-                            return
+                        if building.level + under_construction < build_task["level"]:
+                            if not self.upgrade(res):
+                                cant_build_counter += 1
+                            if cant_build_counter > 3:
+                                return
             if build_task["type"] == "building":
-                print(build_task)
                 building_exist = 0
                 for building in self.buildings:
                     if building.building_type == build_task["building_type"]:
                         building_exist = 1
                         under_construction = 1 if building.under_construction else 0
                         if building.level + under_construction < build_task["level"]:
+
                             if not self.upgrade(building):
+                                cant_build_counter += 1
+                            if cant_build_counter > 3:
                                 return
                 if not building_exist:
                     self.construct_new_building(build_task)
 
     def upgrade(self, construction):
+        print("Try to update " + str(construction))
         soup = BeautifulSoup(
             self.get.request("/build.php?newdid=" + self.village_id + "&id=" + str(construction.slot)).text,
             "html.parser")
@@ -108,11 +128,11 @@ class Village:
                       str(construction.slot))
             return True
         else:
-            print("Workers busy")
+            print("Workers busy or not enough resources")
             return False
 
     def construct_new_building(self, task):
-        print(task)
+        print("Try to construct ", task)
         if "aid" in task:
             building_slot = task["aid"]
         else:
@@ -131,6 +151,9 @@ class Village:
                 name = building.find("h2")
                 if name.text == task["building_type"]:
                     button = building.find(class_="textButtonV1 green new")
+                    if not button:
+                        print("Can't build now")
+                        return
                     url = self.get_url(button['onclick'])
                     self.get.request(url + "&newdid=" + self.village_id)
                     print("Start build new " + task['building_type'] + " in " + str(building_slot))
