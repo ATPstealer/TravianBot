@@ -26,7 +26,7 @@ build_list = [
     {"building_type": "Warehouse", "level": 13},
     {"building_type": "Granary", "level": 10},
     {"building_type": "Palisade", "level": 5, "aid": 40},
-    {"building_type": "Marketplace", "level": 5},
+    {"building_type": "Marketplace", "level": 10},
     {"building_type": "Town Hall", "level": 1, "aid": 23},
     {"building_type": "Residence", "level": 1, "aid": 25},
     {"building_type": "Cropland", "level": 5},
