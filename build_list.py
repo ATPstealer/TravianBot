@@ -19,6 +19,9 @@ build_list = [
     {"building_type": "Main Building", "level": 7},
     {"building_type": "Warehouse", "level": 7},
     {"building_type": "Granary", "level": 5},
+    {"building_type": "Barracks", "level": 5, "aid": 37},
+    {"building_type": "Embassy", "level": 1, "aid": 29},
+    {"building_type": "Marketplace", "level": 5, "aid": 31},
 ]
 
 capital_build_list = [
