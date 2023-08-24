@@ -74,6 +74,7 @@ capital_build_list = [
     {"building_type": "Stable", "level": 5, "aid": 34},
     {"building_type": "Academy", "level": 10, "aid": 36},
     {"building_type": "Palace", "level": 10, "aid":  25},
+    {"building_type": "Town Hall", "level": 1, "aid":  23},
     {"building_type": "Woodcutter", "level": 6},
     {"building_type": "Clay Pit", "level": 6},
     {"building_type": "Iron Mine", "level": 6},
