@@ -43,6 +43,8 @@ build_list = [
     {"building_type": "Palisade", "level": 5, "aid": 40},
     {"building_type": "Smithy", "level": 5, "aid": 33},
     {"building_type": "Stable", "level": 5, "aid": 34},
+    {"building_type": "Trapper", "level": 2, "aid": 28},
+
 ]
 
 capital_build_list = [
