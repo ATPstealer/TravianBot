@@ -45,7 +45,7 @@ build_list = [
     {"building_type": "Iron Mine", "level": 6},
     {"building_type": "Palisade", "level": 5, "aid": 40},
 
-    {"building_type": "Grain Mill", "level": 3, "aid": 21},
+    {"building_type": "Grain Mill", "level": 5, "aid": 21},
 ]
 
 capital_build_list = [
