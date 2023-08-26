@@ -47,10 +47,15 @@ build_list = [
     {"building_type": "Palisade", "level": 5, "aid": 40},
     {"building_type": "Cropland", "level": 6},
     {"building_type": "Woodcutter", "level": 7},
-    {"building_type": "Residence", "level": 10, "aid": 25},
     {"building_type": "Clay Pit", "level": 7},
     {"building_type": "Iron Mine", "level": 7},
     {"building_type": "Hero's Mansion", "level": 10, "aid": 22},
+    {"building_type": "Woodcutter", "level": 8},
+    {"building_type": "Residence", "level": 10, "aid": 25},
+    {"building_type": "Clay Pit", "level": 8},
+    {"building_type": "Iron Mine", "level": 8},
+    {"building_type": "Cropland", "level": 7},
+
 
 
 
