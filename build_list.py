@@ -51,6 +51,7 @@ build_list = [
     {"building_type": "Clay Pit", "level": 7},
     {"building_type": "Iron Mine", "level": 7},
 
+    # outside late
     {"building_type": "Grain Mill", "level": 5, "aid": 21},
     {"building_type": "Woodcutter", "level": 10},
     {"building_type": "Sawmill", "level": 5, "aid": 19},
@@ -61,6 +62,7 @@ build_list = [
     {"building_type": "Cropland", "level": 10},
     {"building_type": "Bakery", "level": 5, "aid": 20},
 
+    # inside late
     {"building_type": "Palisade", "level": 20, "aid": 40},
     {"building_type": "Rally Point", "level": 10},
     {"building_type": "Main Building", "level": 20},
