@@ -37,13 +37,14 @@ build_list = [
     {"building_type": "Warehouse", "level": 11},
     {"building_type": "Granary", "level": 8},
     {"building_type": "Grain Mill", "level": 5, "aid": 21},
+    {"building_type": "Smithy", "level": 5, "aid": 33},
+    {"building_type": "Stable", "level": 5, "aid": 34},
+    {"building_type": "Trapper", "level": 2, "aid": 28},
     {"building_type": "Woodcutter", "level": 6},
     {"building_type": "Clay Pit", "level": 6},
     {"building_type": "Iron Mine", "level": 6},
     {"building_type": "Palisade", "level": 5, "aid": 40},
-    {"building_type": "Smithy", "level": 5, "aid": 33},
-    {"building_type": "Stable", "level": 5, "aid": 34},
-    {"building_type": "Trapper", "level": 2, "aid": 28},
+
 
 ]
 
