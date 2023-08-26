@@ -50,6 +50,9 @@ build_list = [
     {"building_type": "Residence", "level": 10, "aid": 25},
     {"building_type": "Clay Pit", "level": 7},
     {"building_type": "Iron Mine", "level": 7},
+    {"building_type": "Hero's Mansion", "level": 10, "aid": 22},
+
+
 
     # outside late
     {"building_type": "Grain Mill", "level": 5, "aid": 21},
