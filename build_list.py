@@ -46,8 +46,35 @@ build_list = [
     {"building_type": "Iron Mine", "level": 6},
     {"building_type": "Palisade", "level": 5, "aid": 40},
     {"building_type": "Cropland", "level": 6},
+    {"building_type": "Woodcutter", "level": 7},
+    {"building_type": "Clay Pit", "level": 7},
+    {"building_type": "Iron Mine", "level": 7},
+
+
+
+
+
+
+
 
     {"building_type": "Grain Mill", "level": 5, "aid": 21},
+    {"building_type": "Woodcutter", "level": 10},
+    {"building_type": "Sawmill", "level": 5, "aid": 19},
+    {"building_type": "Clay Pit", "level": 10},
+    {"building_type": "Brickyard", "level": 5, "aid": 24},
+    {"building_type": "Iron Mine", "level": 10},
+    {"building_type": "Iron Foundry", "level": 5, "aid": 28},
+    {"building_type": "Cropland", "level": 10},
+    {"building_type": "Bakery", "level": 5, "aid": 20},
+
+    {"building_type": "Rally Point", "level": 10},
+    {"building_type": "Main Building", "level": 20},
+    {"building_type": "Barracks", "level": 20, "aid": 37},
+    {"building_type": "Marketplace", "level": 20, "aid": 31},
+    {"building_type": "Embassy", "level": 20, "aid": 29},
+    {"building_type": "Academy", "level": 20, "aid": 36},
+    {"building_type": "Marketplace", "level": 20, "aid": 31},
+    {"building_type": "Warehouse", "level": 20},
 ]
 
 capital_build_list = [
