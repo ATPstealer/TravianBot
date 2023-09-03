@@ -36,7 +36,7 @@ build_list = [
     {"building_type": "Marketplace", "level": 5, "aid": 31},
     {"building_type": "Warehouse", "level": 11},
     {"building_type": "Granary", "level": 8},
-    {"building_type": "Grain Mill", "level": 3, "aid": 21},
+    {"building_type": "Residence", "level": 10, "aid": 25},
     {"building_type": "Smithy", "level": 5, "aid": 33},
     {"building_type": "Stable", "level": 5, "aid": 34},
     {"building_type": "Trapper", "level": 5, "aid": 38},
@@ -51,11 +51,11 @@ build_list = [
     {"building_type": "Iron Mine", "level": 7},
     {"building_type": "Hero's Mansion", "level": 10, "aid": 22},
     {"building_type": "Woodcutter", "level": 8},
-    {"building_type": "Residence", "level": 10, "aid": 25},
     {"building_type": "Clay Pit", "level": 8},
     {"building_type": "Iron Mine", "level": 8},
     {"building_type": "Cropland", "level": 7},
-
+    {"building_type": "Warehouse", "level": 20},
+    {"building_type": "Granary", "level": 20},
 
 
 
@@ -82,8 +82,6 @@ build_list = [
     {"building_type": "Embassy", "level": 20, "aid": 29},
     {"building_type": "Academy", "level": 20, "aid": 36},
     {"building_type": "Marketplace", "level": 20, "aid": 31},
-    {"building_type": "Warehouse", "level": 20},
-    {"building_type": "Granary", "level": 20},
     {"building_type": "Town Hall", "level": 20},
 ]
 
@@ -145,6 +143,9 @@ capital_build_list = [
     {"building_type": "Barracks", "level": 12, "aid": 37},
     {"building_type": "Embassy", "level": 9, "aid": 29},
     {"building_type": "Hero's Mansion", "level": 10, "aid": 22},
+    {"building_type": "Workshop", "level": 10, "aid": 38},
+    {"building_type": "Warehouse", "level": 20},
+    {"building_type": "Granary", "level": 20},
     {"building_type": "Woodcutter", "level": 8},
     {"building_type": "Clay Pit", "level": 8},
     {"building_type": "Iron Mine", "level": 8},
@@ -161,4 +162,5 @@ capital_build_list = [
     {"building_type": "Clay Pit", "level": 10},
     {"building_type": "Iron Mine", "level": 10},
     {"building_type": "Cropland", "level": 10},
+    {"building_type": "Bakery", "level": 5, "aid": 20},
 ]
